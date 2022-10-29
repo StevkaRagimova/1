@@ -1,0 +1,16 @@
+.form__input {
+    display: block;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #000;
+    width: 100%;
+    padding: 13px 0;
+    outline: none;
+    border: none;
+    border-bottom: 1px solid #0003;
+  }
+  
+  .form__input:not(:first-child) {
+    margin-top: 17px;
+  }

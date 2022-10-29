@@ -1,0 +1,15 @@
+.profile__workplace {
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 1.2;
+    font-weight: normal;
+    margin: 8px 0 0;
+}
+
+
+  
+  @media screen and (max-width: 400px) {
+    .profile__workplace {
+      font-size: 14px;
+    }
+  }

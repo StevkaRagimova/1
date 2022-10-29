@@ -1,0 +1,22 @@
+.profile__name {
+    color: #FFFFFF;
+    font-size: 42px;
+    line-height: 1.4;
+    font-weight: 500;
+    margin: 0 12px 0 0;
+    display: inline-block;
+}
+
+@media screen and (max-width: 767px) {
+    .profile__name {
+      font-size: 40px;
+	  margin-left: 36px;
+    }
+  }
+  
+  @media screen and (max-width: 400px) {
+    .profile__name {
+      font-size: 27px;
+	  margin: 0 10px 0 28px;
+    }
+  }
