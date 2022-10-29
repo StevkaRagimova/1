@@ -11,8 +11,8 @@
 	background-size: contain;
 }
 
-.popup__btn-close:hover {
-  opacity: 0.5;
+.popup__button-close:hover {
+  opacity: 0.6;
 }
     
 
