@@ -5,4 +5,4 @@
 При содании сайта был использован "Figma".
 
 Проект доступен по ссылке: 
-mesto2
+https://stevkaragimova.github.io/mesto/
