@@ -1,6 +1,5 @@
 .profile__info {
     width: calc(100% - 330px);
-    padding-left: 28px;
 	box-sizing: border-box;
   display: grid;
     grid-template-columns: auto 24px;
@@ -10,10 +9,12 @@
 
 @media screen and (max-width: 767px) {
     .profile__info {
-    align-items: center; 
+		padding-left: 28px;
+		width: 100%;
+		justify-content: center;
 		text-align: center;
-    max-width: 100%;
-		padding-left: 19px;
-    padding-bottom: 36px;
+		max-width: 100%;
+		padding-bottom: 32px;
+
     }
   }

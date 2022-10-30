@@ -5,12 +5,16 @@
     line-height: 17px;
     color: #000;
     width: 100%;
-    padding: 13px 0;
+    padding: 7px 0 9px;
     outline: none;
     border: none;
     border-bottom: 1px solid #0003;
   }
-  
+ @media screen and (max-width:420px)  { 
+  .form__input{
+	  padding: 12px 0 9px;
+  }
+ }
   .form__input:not(:first-child) {
-    margin-top: 17px;
+    margin-top: 20px;
   }
