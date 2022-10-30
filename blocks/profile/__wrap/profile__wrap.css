@@ -1,6 +1,6 @@
 .profile__wrap {
-    margin-bottom: 8px;
-    display: flex;
+  margin-bottom: 8px;
+  display: flex;
   align-items: center;
   flex-wrap: nowrap;
 }
