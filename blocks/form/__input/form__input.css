@@ -8,7 +8,7 @@
   padding: 7px 0 9px;
   outline: none;
   border: none;
-  border-bottom: 1px solid #0003;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 @media screen and (max-width: 420px) {
   .form__input {
