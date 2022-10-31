@@ -10,10 +10,12 @@
 }
 
 @media screen and (max-width: 767px) {
-  .profile__name {
-      font-size: 40px;
-  }
+.profile__name {
+    font-size: 40px;
+    width: calc(100% - 50px);
 }
+}
+
 
 @media screen and (max-width: 400px) {
   .profile__name {

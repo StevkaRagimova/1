@@ -1,9 +1,14 @@
 .profile__workplace {
-  color: #ffffff;
+  color: #FFFFFF;
   font-size: 18px;
   line-height: 1.2;
   font-weight: normal;
   margin: 3px 0 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  grid-column: span 2;
+
 }
 
 @media screen and (max-width: 400px) {
