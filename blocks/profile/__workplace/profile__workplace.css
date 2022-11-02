@@ -3,11 +3,10 @@
   font-size: 18px;
   line-height: 1.2;
   font-weight: normal;
-  margin: 3px 0 0;
+  margin: 0;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  grid-column: span 2;
   width: 100%;
 
 }
@@ -15,6 +14,5 @@
 @media screen and (max-width: 400px) {
   .profile__workplace {
       font-size: 14px;
-      margin-top: 5px;
   }
 }

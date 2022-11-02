@@ -1,19 +1,18 @@
 .profile__info {
-  width: calc(100% - 330px);
-  box-sizing: border-box;
-  display: grid;
-  justify-content: start;
-  align-items: center;
-  grid-template-columns: auto 1fr;
+	width: calc(100% - 330px);
+    margin-right: auto;
 }
 
 @media screen and (max-width: 767px) {
 .profile__info {
-  padding-left: 0;
-  width: 100%;
-  justify-content: center;
+  width: 80%;
+  margin: 0 auto;
   text-align: center;
   padding-bottom: 32px;
-  display: flex;
 }
+}
+@media screen and (max-width: 400px) {
+	.profile__info {
+	width: 100%;
+	}
 }
