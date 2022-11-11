@@ -4,5 +4,4 @@
 
 При содании сайта был использован "Figma".
 
-Проект доступен по ссылке: 
-https://stevkaragimova.github.io/mesto/
+Проект доступен по ссылке: https://stevkaragimova.github.io/mesto/
