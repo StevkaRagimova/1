@@ -2,32 +2,34 @@
 <html lang="ru">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="./pages/index.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="stylesheet" href="./pages/index.css" />
         <title>Проект "Место"</title>
     </head>
     <body class="root">
         <div class="page">
             <header class="header">
-                <img class="header__logo" src="./images/Vector.svg" alt="логотип">
+                <img class="header__logo" src="./images/Vector.svg" alt="логотип" />
             </header>
 
             <main>
                 <section class="profile">
-                    <img class="profile__avatar" src="./images/avatar.png" alt="Жак-Ив Кусто">
+                    <img class="profile__avatar" src="./images/avatar.png" alt="Жак-Ив Кусто" />
                     <div class="profile__info">
-						<div class="profile__wrapper">
-							<h1 class="profile__name">Жак-Ив Кусто</h1>
-							<button class="profile__edit-button" type="button"></button>
-						</div>
+                        <div class="profile__wrapper">
+                            <h1 class="profile__name">Жак-Ив Кусто</h1>
+                            <button class="profile__edit-button" type="button"></button>
+                        </div>
                         <p class="profile__workplace">Исследователь океана</p>
                     </div>
                     <button class="profile__add-button" type="button"></button>
                 </section>
 
                 <section class="elements">
-                    <article class="element"> <!-- ЭТО БУДЕМ ПИСАТЬ в скрипте, массив взять из спринта. Все это надо будет удалитью
-                        . <img class="element__image" src="./images/karachaevo.png" alt="Карачаевск"> 
+                        <!-- ЭТО БУДЕМ ПИСАТЬ в скрипте, массив взять из спринта. Все это надо будет удалитью
+                    <article class="element">
+                    
+                         <img class="element__image" src="./images/karachaevo.png" alt="Карачаевск"> 
                         <div class="element__info">
                             <h2 class="element__title">Карачаевск</h2>
                             <button class="element__button" type="button"></button>
@@ -78,16 +80,38 @@
                     </article>
                 </section>
 
+                <!-- кнопка редактирования профиля -->
                 <section class="popup">
                     <div class="popup__container">
                         <h2 class="popup__title">Редактировать профиль</h2>
-                        <form class ="form" name="form">
-                            <input class="form__input" name="form__input_name" type="text">
-                            <input class="form__input" name="form__input_workplace" type="text">
+                        <form class="form" name="form">
+                            <input class="form__input" name="form__input_name" type="text" />
+                            <input class="form__input" name="form__input_workplace" type="text" />
                             <button class="form__button" type="submit">Сохранить</button>
-                            <button class="element__trashbin" type="button"></button>
                         </form>
                         <button class="popup__button-close" type="button"></button>
+                    </div>
+                </section>
+
+                <!-- добавления нового места -->
+                <section class="popup">
+                    <div class="popup__container">
+                        <h2 class="popup__title">Новое место</h2>
+                        <form class="form" name="form">
+                            <input class="form__input" name="cardTitle" type="text" placeholder="Название" />
+                            <input class="form__input" name="cardLink" type="text" placeholder="Ссылка на картинку" />
+                        </form>
+                        <button class="form__button" type="submit">Сохранить</button>
+                    </div>
+                </section>
+
+                <!-- открытие просмотра фотографии -->
+                <section class="popup">
+                    <div class="popup__container">
+                        <figure class="figure">
+                            <img class="figure__image" />
+                            <figcaption class="figure__subtitle"></figcaption>
+                        </figure>
                     </div>
                 </section>
             </main>
@@ -97,18 +121,15 @@
             </footer>
         </div>
 
-<!--  УДАЛЕНИЕ КАРТОЧКИ   ПЕРЕПИСАТЬ ПОД СВОЕ
-        <template id="card">
-            <li class="gallery__card">
-              <img class="gallery__img">
-              <div class="gallery__info">
-                <h2 class="gallery__title"></h2>
-                <button class="gallery__like" type="button"></button>
-              </div>
-              <button class="gellery__btn-remove"></button>
-            </li>
-          </template>
--->
+        <!--  лайк карточки и ее удаление -->
+        <template id="element">
+            <img class="element__image" />
+            <div class="element__info">
+                <h2 class="element__title"></h2>
+                <button class="element__button" type="button"></button>
+            </div>
+            <button class="element__trashbin" type="button"></button>
+        </template>
 
         <script src="./scripts/index.js"></script>
     </body>
