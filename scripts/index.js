@@ -12,13 +12,11 @@ const AddButton = document.querySelector('.profile__add-button');
 const editButton = document.querySelector('.profile__edit-button');
 const popupAddPicture = document.querySelector('.popup_picture');
 const likeButton = document.querySelectorAll('.element__like-button');
-const popupPicture = document.querySelector('.popup__photo');
+const popupFigure = document.querySelector('.popup__photo');
 const imageFigure = document.querySelector('.figure__image');
 const subtitleFigure = document.querySelector('.figure__subtitle');
 
-const initial
-
-Cards = [
+const initialElements = [
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -51,7 +49,7 @@ Cards = [
   
   function createElement(name, link) {
     const elementSample = document.querySelector('#element').content;
-    const element = elementSample.querySelector('.elements').cloneNode(true);
+    const element = elementSample.querySelector('.element').cloneNode(true);
     const image = element.querySelector('.element__image');
     const info = element.querySelector('.element__info');
     const buttonLike = element.querySelector('.element__like-button');
@@ -62,7 +60,7 @@ Cards = [
     title.textContent = name;
 
     image.addEventListener('click', (event) => {
-        openPopup(popupPicture);
+        openPopup(popupFigure);
         imageFigure.src = image.src;
         image.alt = title.textContent;
         subtitleFigure.textContent = title.textContent;
@@ -112,7 +110,7 @@ function changeValueElement() {
     e.preventDefault();
   }
 
-  initialCards.forEach(item => renderCard(elements,  createElement(item.name, item.link)));
+  initialElements.forEach(item => renderElement(elements, createElement(item.name, item.link)));
 
 
 
@@ -133,13 +131,13 @@ popupForm.addEventListener("submit", formSubmitHandler);
 
 
 addButton.addEventListener('click', () => {
-    openPopup(popupPicture);
+    openPopup(popupFigure);
     changeValueElement();
   });
   
 
-  formCard.addEventListener('submit', (event) => {
-    renderElement(galleryCards, createCard(inputCardName.value, inputCardUrl.value));
+  formElement.addEventListener('submit', (event) => {
+    renderElement(elements, createElement(pictureTitle.value, pictureLink.value));
     formDefault(event);
     closePopup(popupCard);
   });
