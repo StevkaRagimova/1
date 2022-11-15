@@ -1,11 +1,11 @@
-const profileEditBtn = document.querySelector(".profile__edit-button");
+const profileEditButton = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
 const profileName = document.querySelector(".profile__name");
 const formInputName = document.querySelector('input[name="form__input_name"]');
 const profileProfession = document.querySelector(".profile__workplace");
 const formInputProfession = document.querySelector('input[name="form__input_workplace"]');
-const formPlace = document.querySelector(".element");
-const pictureTitle = document.querySelector('[name="pictureTitle]');
+const formElement = document.querySelector('[name="element"]');
+const pictureTitle = document.querySelector('[name="pictureTitle"]');
 const pictureLink = document.querySelector('[name="pictureLink"]');
 const elements = document.querySelector('.elements');
 const AddButton = document.querySelector('.profile__add-button');
@@ -108,6 +108,13 @@ function changeValueElement() {
   
   }
 
+  function formDefault(e) {
+    e.preventDefault();
+  }
+
+  initialCards.forEach(item => renderCard(elements,  createElement(item.name, item.link)));
+
+
 
 function formSubmitHandler(form) {
     form.preventDefault();
@@ -123,3 +130,16 @@ profileEditButton.addEventListener("click", () => {
 });
 
 popupForm.addEventListener("submit", formSubmitHandler);
+
+
+addButton.addEventListener('click', () => {
+    openPopup(popupPicture);
+    changeValueElement();
+  });
+  
+
+  formCard.addEventListener('submit', (event) => {
+    renderElement(galleryCards, createCard(inputCardName.value, inputCardUrl.value));
+    formDefault(event);
+    closePopup(popupCard);
+  });
