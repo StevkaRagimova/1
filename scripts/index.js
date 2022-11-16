@@ -4,19 +4,32 @@ const profileName = document.querySelector(".profile__name");
 const formInputName = document.querySelector('input[name="form__input_name"]');
 const profileProfession = document.querySelector(".profile__workplace");
 const formInputProfession = document.querySelector('input[name="form__input_workplace"]');
+<<<<<<< HEAD
 const formElement = document.querySelector('[name="element"]');
 const pictureTitle = document.querySelector('[name="pictureTitle"]');
+=======
+const formPlace = document.querySelector(".element");
+const pictureTitle = document.querySelector('[name="pictureTitle]');
+>>>>>>> develop
 const pictureLink = document.querySelector('[name="pictureLink"]');
 const elements = document.querySelector('.elements');
 const AddButton = document.querySelector('.profile__add-button');
 const editButton = document.querySelector('.profile__edit-button');
 const popupAddPicture = document.querySelector('.popup_picture');
 const likeButton = document.querySelectorAll('.element__like-button');
+<<<<<<< HEAD
 const popupFigure = document.querySelector('.popup__photo');
 const imageFigure = document.querySelector('.figure__image');
 const subtitleFigure = document.querySelector('.figure__subtitle');
 
 const initialElements = [
+=======
+const popupPicture = document.querySelector('.popup__photo');
+const imageFigure = document.querySelector('.figure__imgage');
+const subtitleFigure = document.querySelector('.figure__subtitle');
+
+const initialCards = [
+>>>>>>> develop
     {
       name: 'Архыз',
       link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -47,14 +60,21 @@ const initialElements = [
     container.prepend(item);
   }
   
+<<<<<<< HEAD
   function createElement(name, link) {
     const elementSample = document.querySelector('#element').content;
     const element = elementSample.querySelector('.element').cloneNode(true);
+=======
+  function createCard(name, link) {
+    const elementSample = document.querySelector('#element').content;
+    const element = elementSample.querySelector('.elements').cloneNode(true);
+>>>>>>> develop
     const image = element.querySelector('.element__image');
     const info = element.querySelector('.element__info');
     const buttonLike = element.querySelector('.element__like-button');
     const buttonTrash = element.querySelector('.element__trashbin-button');
   
+<<<<<<< HEAD
     image.src = link;
     image.alt = name;
     title.textContent = name;
@@ -81,6 +101,10 @@ const initialElements = [
           closePopup(popupActive);
         }
       }
+=======
+
+
+>>>>>>> develop
 
 
 function openPopup() {
