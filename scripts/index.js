@@ -1,17 +1,51 @@
-const profileEditButton = document.querySelector(".profile__edit-button");
+const profileEditBtn = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
+const popupBtnClose = document.querySelector(".popup__button-close");
+let popupForm = document.querySelector(".form");
 const profileName = document.querySelector(".profile__name");
 const formInputName = document.querySelector('input[name="form__input_name"]');
 const profileProfession = document.querySelector(".profile__workplace");
 const formInputProfession = document.querySelector('input[name="form__input_workplace"]');
+
+
+
+/*начинаем функции для откр.закр.окон*/
+
+function openPopup() {
+    popup.classList.add("popup_opened");
+}
+
+function closePopup() {
+    popup.classList.remove("popup_opened");
+}
+
+function addValueInValue() {
+    formInputName.value = profileName.textContent;
+    formInputProfession.value = profileProfession.textContent;
+}
+
+function formSubmitHandler(form) {
+    form.preventDefault();
+    profileName.textContent = formInputName.value;
+    profileProfession.textContent = formInputProfession.value;
+    closePopup();
+}
+
+popupBtnClose.addEventListener("click", closePopup);
+profileEditBtn.addEventListener("click", () => {
+    openPopup();
+    addValueInValue();
+});
+
+popupForm.addEventListener("submit", formSubmitHandler);
+
+
+/*начинаем массив*/
+
 const formElement = document.querySelector('[name="element"]');
 const pictureTitle = document.querySelector('[name="pictureTitle"]');
 const pictureLink = document.querySelector('[name="pictureLink"]');
-const elements = document.querySelector('.elements');
-const AddButton = document.querySelector('.profile__add-button');
-const editButton = document.querySelector('.profile__edit-button');
-const popupAddPicture = document.querySelector('.popup_picture');
-const likeButton = document.querySelectorAll('.element__like-button');
+const galleryElements = document.querySelector('.elements');
 const popupFigure = document.querySelector('.popup__figure');
 const imageFigure = document.querySelector('.figure__image');
 const subtitleFigure = document.querySelector('.figure__subtitle');
@@ -43,101 +77,76 @@ const initialElements = [
     }
   ];
 
-  function renderCard(container, item) {
+
+  /*эта функция говорит о добавлении карточки в начало массива*/
+  function renderElement(container, item) {
     container.prepend(item);
   }
-  
+
+
+    /*эта функция позволяет присваивать новой карточке название и добавлять фото, ставить лайк и удалять фото */
   function createElement(name, link) {
     const elementSample = document.querySelector('#element').content;
-    const element = elementSample.querySelector('.element').cloneNode(true);
-    const image = element.querySelector('.element__image');
-    const info = element.querySelector('.element__info');
-    const buttonLike = element.querySelector('.element__like-button');
-    const buttonTrash = element.querySelector('.element__trashbin-button');
-  
-    image.src = link;
-    image.alt = name;
+    const elementGallery = elementSample.querySelector('.element').cloneNode(true); 
+    const img = elementGallery.querySelector('.element__image');
+    const info = elementGallery.querySelector('.element__info');
+    const title = elementGallery.querySelector('.element__title');
+    const buttonLike = elementGallery.querySelector('.element__button');
+    const buttonTrash = elementGallery.querySelector('.element__trashbin');
+   
+
+    img.src = link;
+    img.alt = name;
     title.textContent = name;
 
-    image.addEventListener('click', (event) => {
-        openPopup(popupFigure);
-        imageFigure.src = image.src;
-        image.alt = title.textContent;
+
+    img.addEventListener('click', (event) => {
+        openPopup()
+        imageFigure.src = img.src;
+        img.alt = title.textContent;
         subtitleFigure.textContent = title.textContent;
-      });
-      buttonTrash.addEventListener('click', (event) => event.target.closest('.element').remove());
-      buttonLike.addEventListener('click', (event) => event.target.classList.toggle('element__button_active'));
-    
-      return element;
-    }
+        buttonTrash.addEventListener('click', (event) => event.target.closest('.element').remove());
+        buttonLike.addEventListener('click', (event) => event.target.classList.toggle('element__button_active'));
+        
+        return elementGallery;
 
 
-    function handleEventClosePopup(event) {
+});
+  }
+
+/*  если попап активен,  метод closest возвращает ближайший ролижайший родительский элемент (или сам элемент), который соответствует заданному CSS-селектору или null, если таковых элементов вообще нет.*/
+
+  function handleEventClosePopup(event) {
         const popupActive = event.target.closest('.popup');
-        const isTargetOverlay = event.target.classList.contains('popup_active');
+        const isTargetOverlay = event.target.classList.contains('popup_active'); /*какого черта это вообще че такое */
         const isTargetButtonClose = event.target.classList.contains('popup__button-close');
       
-        if (isTargetOverlay || isTargetButtonClose) {
+        if (isTargetOverlay || isTargetButtonClose) { /*если попап активен, или закрыт, то закрыть его нафиг*/
           closePopup(popupActive);
         }
       }
 
+      /*эта функция меняет значение атрибута карточки, вставляя в текст в нужные поля*/
+      function changeElementValue() {
+        pictureTitle.value = '';
+        pictureLink.value = '';  
+      }
+    
+      function formDefault(event) {
+        event.preventDefault();
+      }
 
-function openPopup() {
-    popup.classList.add("popup_opened");
-    document.addEventListener('click', handleEventClosePopup);
-}
+/*начинаем мучить массив, сначала переберем его через фунцкцию renderElement , то есть выводим его на экран*/
+initialElements.forEach(item => renderElement(galleryElements, createElement(item.name, item.link))); 
 
-function closePopup() {
-    popup.classList.remove("popup_opened");
-    document.removeEventListener('click', handleEventClosePopup);
-}
+/* ПОТОМ добавим обработчик кнопки добавления*/
+const AddButton = document.querySelector('.profile__add-button');
 
-function addValueInValue() {
-    formInputName.value = profileName.textContent;
-    formInputProfession.value = profileProfession.textContent;
-    closePopup(popupProfile);
-}
-
-
-function changeValueElement() {
-    inputPictureTitle.value = '';
-    inputPictureTitle = '';
-  
-  }
-
-  function formDefault(e) {
-    e.preventDefault();
-  }
-
- 
-  initialElements.forEach(item => renderElement(elements, createElement(item.name, item.link))); 
-
-
-function formSubmitHandler(form) {
-    form.preventDefault();
-    profileName.textContent = formInputName.value;
-    profileProfession.textContent = formInputProfession.value;
-    closePopup();
-}
-
-popupButtonClose.addEventListener("click", closePopup);
-profileEditButton.addEventListener("click", () => {
-    openPopup();
-    addValueInValue();
+AddButton.addEventListener('click', () => {
+    openPopup(popupCard);
+    сhangeElementValue();
 });
 
-popupForm.addEventListener("submit", formSubmitHandler);
 
 
-addButton.addEventListener('click', () => {
-    openPopup(popupFigure);
-    changeValueElement();
-  });
-  
 
-  formElement.addEventListener('submit', (event) => {
-    renderElement(elements, createElement(pictureTitle.value, pictureLink.value));
-    formDefault(event);
-    closePopup(popupCard);
-  });
