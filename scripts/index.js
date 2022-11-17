@@ -9,6 +9,7 @@ const formInputProfession = document.querySelector('input[name="form__input_work
 
 
 
+
 /*начинаем функции для откр.закр.окон*/
 
 function openPopup() {
@@ -89,10 +90,9 @@ const initialElements = [
     const elementSample = document.querySelector('#element').content;
     const elementGallery = elementSample.querySelector('.element').cloneNode(true); 
     const img = elementGallery.querySelector('.element__image');
-    const info = elementGallery.querySelector('.element__info');
     const title = elementGallery.querySelector('.element__title');
-    const buttonLike = elementGallery.querySelector('.element__button');
-    const buttonTrash = elementGallery.querySelector('.element__trashbin');
+    const buttonLike = elementGallery.querySelector('.element__like-button');
+    const buttonTrash = elementGallery.querySelector('.element__trashbin-button');
    
 
     img.src = link;
@@ -100,25 +100,23 @@ const initialElements = [
     title.textContent = name;
 
 
-    img.addEventListener('click', (event) => {
-        openPopup()
+ img.addEventListener('click', (event) => {
+        openPopup(popupFigure);
         imageFigure.src = img.src;
         img.alt = title.textContent;
         subtitleFigure.textContent = title.textContent;
-        buttonTrash.addEventListener('click', (event) => event.target.closest('.element').remove());
-        buttonLike.addEventListener('click', (event) => event.target.classList.toggle('element__button_active'));
-        
-        return elementGallery;
-
-
-});
-  }
+      });
+      buttonTrash.addEventListener('click', (event) => event.target.closest('.element').remove());
+      buttonLike.addEventListener('click', (event) => event.target.classList.toggle('element__button_active'));
+    
+      return elementGallery;
+    }
 
 /*  если попап активен,  метод closest возвращает ближайший ролижайший родительский элемент (или сам элемент), который соответствует заданному CSS-селектору или null, если таковых элементов вообще нет.*/
 
   function handleEventClosePopup(event) {
         const popupActive = event.target.closest('.popup');
-        const isTargetOverlay = event.target.classList.contains('popup_active'); /*какого черта это вообще че такое */
+        const isTargetOverlay = event.target.classList.contains('popup_opened'); 
         const isTargetButtonClose = event.target.classList.contains('popup__button-close');
       
         if (isTargetOverlay || isTargetButtonClose) { /*если попап активен, или закрыт, то закрыть его нафиг*/
@@ -143,10 +141,6 @@ initialElements.forEach(item => renderElement(galleryElements, createElement(ite
 const AddButton = document.querySelector('.profile__add-button');
 
 AddButton.addEventListener('click', () => {
-    openPopup(popupCard);
+    openPopup(popupPicture);
     сhangeElementValue();
 });
-
-
-
-
