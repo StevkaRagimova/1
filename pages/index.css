@@ -35,13 +35,13 @@
 
 @import url(../blocks/element/__title/element__title.css);
 
-@import url(../blocks/element/__trashbin/element__trashbin.css);
+@import url(../blocks/element/__trashbin/.element__trashbin-button.css);
 
 @import url(../blocks/element/__info/element__info.css);
 
 @import url(../blocks/element/__image/element__image.css);
 
-@import url(../blocks/element/__button/element__button.css);
+@import url(../blocks/element/__button/element__like-button.css);
 
 @import url(../blocks/element/__button/_active/element__button_active.css);
 
