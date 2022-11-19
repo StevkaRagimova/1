@@ -1,4 +1,4 @@
-.element__trashbin {
+.element__trashbin-button {
     position: absolute;
   z-index: 5;
   opacity: 1;
@@ -17,6 +17,6 @@
   transition: opacity .3s ease-in-out;
 }
 
-.element__trashbin:hover {
+.element__trashbin-button:hover {
   opacity: .6;
 }

@@ -82,7 +82,7 @@
                 </section>
 
                 <!-- кнопка редактирования профиля -->
-                <section class="popup">
+                <section class="popup popup__profile">
                     <div class="popup__container">
                         <h2 class="popup__title">Редактировать профиль</h2>
                         <form class="form" name="profile">
@@ -95,25 +95,29 @@
                 </section>
 
                 <!-- добавление нового места -->
-                <section class="popup__picture">
+                <section class="popup popup__picture">
                     <div class="popup__container">
                         <h2 class="popup__title">Новое место</h2>
                         <form class="form" name="place">
                             <input class="form__input" name="pictureTitle" type="text" placeholder="Название">
                             <input class="form__input" name="pictureLink" type="text" placeholder="Ссылка на картинку">
+							<button class="form__button" type="submit">Сохранить</button>
                         </form>
-                        <button class="form__button" type="submit">Сохранить</button>
+                        
+						<button class="popup__button-close" type="button"></button>
                     </div>
                 </section>
 
                 <!-- открытие просмотра фотографии -->
-                <section class="popup__figure">
-                    <div class="popup__container">
+                <section class="popup popup__figure">
+                    
                         <figure class="figure">
                             <img class="figure__image">
                             <figcaption class="figure__subtitle"></figcaption>
+							<button class="popup__button-close" type="button"></button>
                         </figure>
-                    </div>
+						
+                   
                 </section>
             </main>
 
@@ -122,10 +126,12 @@
             </footer>
         </div>
 
-        <!--  лайк карточки и ее удаление -->
+      
         <template id="element">
 		<div class="element">
+		<div class="element_img">
             <img class="element__image">
+			</div>
             <div class="element__info">
                 <h2 class="element__title"></h2>
                 <button class="element__like-button" type="button"></button>

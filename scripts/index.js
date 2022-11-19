@@ -1,23 +1,36 @@
 const profileEditBtn = document.querySelector(".profile__edit-button");
 const popup = document.querySelector(".popup");
+const popupProfile = document.querySelector(".popup__profile");
 const popupBtnClose = document.querySelector(".popup__button-close");
-let popupForm = document.querySelector(".form");
+let popupForm = document.querySelector('[name="profile"]');
+
 const profileName = document.querySelector(".profile__name");
 const formInputName = document.querySelector('input[name="form__input_name"]');
 const profileProfession = document.querySelector(".profile__workplace");
 const formInputProfession = document.querySelector('input[name="form__input_workplace"]');
 
 
-
+const formElement = document.querySelector('[name="element"]');
+const popupPicture = document.querySelector('.popup__picture');
+const inputElementTitle = document.querySelector('input[name="pictureTitle"]');
+const inputElementLink = document.querySelector('input[name="pictureLink"]');
+const galleryElements = document.querySelector('.elements');
+const popupFigure = document.querySelector('.popup__figure');
+const imageFigure = document.querySelector('.figure__image');
+const subtitleFigure = document.querySelector('.figure__subtitle');
 
 /*начинаем функции для откр.закр.окон*/
 
-function openPopup() {
-    popup.classList.add("popup_opened");
+function openPopup(popup) {
+    popup.classList.add('popup_opened');
+	document.addEventListener('click', handleEventClosePopup);
+	
 }
 
-function closePopup() {
-    popup.classList.remove("popup_opened");
+function closePopup(popup) {
+    popup.classList.remove('popup_opened');
+	document.addEventListener('click', handleEventClosePopup);
+	
 }
 
 function addValueInValue() {
@@ -29,12 +42,13 @@ function formSubmitHandler(form) {
     form.preventDefault();
     profileName.textContent = formInputName.value;
     profileProfession.textContent = formInputProfession.value;
-    closePopup();
+   closePopup(popup);
 }
 
-popupBtnClose.addEventListener("click", closePopup);
+
+
 profileEditBtn.addEventListener("click", () => {
-    openPopup();
+    openPopup(popupProfile);
     addValueInValue();
 });
 
@@ -43,13 +57,7 @@ popupForm.addEventListener("submit", formSubmitHandler);
 
 /*начинаем массив*/
 
-const formElement = document.querySelector('[name="element"]');
-const pictureTitle = document.querySelector('[name="pictureTitle"]');
-const pictureLink = document.querySelector('[name="pictureLink"]');
-const galleryElements = document.querySelector('.elements');
-const popupFigure = document.querySelector('.popup__figure');
-const imageFigure = document.querySelector('.figure__image');
-const subtitleFigure = document.querySelector('.figure__subtitle');
+
 
 const initialElements = [
     {
@@ -119,28 +127,41 @@ const initialElements = [
         const isTargetOverlay = event.target.classList.contains('popup_opened'); 
         const isTargetButtonClose = event.target.classList.contains('popup__button-close');
       
-        if (isTargetOverlay || isTargetButtonClose) { /*если попап активен, или закрыт, то закрыть его нафиг*/
+        if (isTargetOverlay || isTargetButtonClose) { 
           closePopup(popupActive);
         }
       }
 
-      /*эта функция меняет значение атрибута карточки, вставляя в текст в нужные поля*/
-      function changeElementValue() {
-        pictureTitle.value = '';
-        pictureLink.value = '';  
-      }
+      /*эта функция меняет значение атрибута карточки, вставляя в текст в нужные поля. только зачем? мы же не редактируем карточку...*/
+    function сhangeElementValue() {
+  inputElementLink.value = '';
+  inputElementTitle.value = '';
+}
     
       function formDefault(event) {
         event.preventDefault();
       }
+
 
 /*начинаем мучить массив, сначала переберем его через фунцкцию renderElement , то есть выводим его на экран*/
 initialElements.forEach(item => renderElement(galleryElements, createElement(item.name, item.link))); 
 
 /* ПОТОМ добавим обработчик кнопки добавления*/
 const AddButton = document.querySelector('.profile__add-button');
+const formCard = document.querySelector('[name="place"]');
 
 AddButton.addEventListener('click', () => {
     openPopup(popupPicture);
     сhangeElementValue();
 });
+
+
+/*собственно добавление карточки*/
+formCard.addEventListener('submit', (event) => {
+  renderElement(galleryElements, createElement(inputElementTitle.value, inputElementLink.value));
+  formDefault(event);
+  closePopup(popupPicture);
+});
+function formDefault(e) {
+  e.preventDefault();
+}
