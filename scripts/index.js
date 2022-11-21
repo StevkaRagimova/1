@@ -1,8 +1,6 @@
 const profileEditBtn = document.querySelector(".profile__edit-button");
-const popup = document.querySelector(".popup");
 const popupProfile = document.querySelector(".popup_profile");
-const popupBtnClose = document.querySelector(".popup__button-close");
-let popupForm = document.querySelector('[name="profile"]');
+const popupForm = document.querySelector('[name="profile"]');
 
 const profileName = document.querySelector(".profile__name");
 const formInputName = document.querySelector('input[name="form__input_name"]');
@@ -10,7 +8,7 @@ const profileProfession = document.querySelector(".profile__workplace");
 const formInputProfession = document.querySelector('input[name="form__input_workplace"]');
 
 
-const formElement = document.querySelector('[name="element"]');
+
 const popupPicture = document.querySelector('.popup_picture');
 const inputElementTitle = document.querySelector('input[name="pictureTitle"]');
 const inputElementLink = document.querySelector('input[name="pictureLink"]');
