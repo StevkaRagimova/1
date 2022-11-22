@@ -1,5 +1,6 @@
+const popups = Array.from(document.querySelectorAll(".popup"))
+
 const profileEditBtn = document.querySelector(".profile__edit-button");
-const popup = document.querySelector(".popup");  /**надо блин его как то изменить, удалищь - сохранка работать не будет */
 const popupProfile = document.querySelector(".popup_profile");
 const popupForm = document.querySelector('[name="profile"]');
 
@@ -18,14 +19,13 @@ const subtitleFigure = document.querySelector(".figure__subtitle");
 
 /*начинаем функции для откр.закр.окон*/
 
-function openPopup(popup) {
-    popup.classList.add("popup_opened");
-    document.addEventListener("click", handleEventClosePopup);
+function openPopup(popupProfile) {
+    popupProfile.classList.add("popup_opened");
+    
 }
 
-function closePopup(popup) {
-    popup.classList.remove("popup_opened");
-    document.addEventListener("click", handleEventClosePopup);
+function closePopup(popupProfile) {
+    popupProfile.classList.remove("popup_opened");
 }
 
 function addValueInValue() {
@@ -33,11 +33,11 @@ function addValueInValue() {
     formInputProfession.value = profileProfession.textContent;
 }
 
-function formSubmitHandler(form) {
-    form.preventDefault();
+function profileFormSubmitHandler(event) {
+    event.preventDefault();
     profileName.textContent = formInputName.value;
     profileProfession.textContent = formInputProfession.value;
-    closePopup(popup);
+    closePopup(popupProfile);
 }
 
 profileEditBtn.addEventListener("click", () => {
@@ -45,36 +45,8 @@ profileEditBtn.addEventListener("click", () => {
     addValueInValue();
 });
 
-popupForm.addEventListener("submit", formSubmitHandler);
+popupForm.addEventListener("submit", profileFormSubmitHandler);
 
-/*начинаем массив*/
-
-const initialElements = [
-    {
-        name: "Архыз",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-    },
-    {
-        name: "Челябинская область",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg",
-    },
-    {
-        name: "Иваново",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg",
-    },
-    {
-        name: "Камчатка",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg",
-    },
-    {
-        name: "Холмогорский район",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg",
-    },
-    {
-        name: "Байкал",
-        link: "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-    },
-];
 
 /*эта функция говорит о добавлении карточки в начало массива*/
 function renderElement(container, item) {
@@ -106,19 +78,17 @@ function createCard(name, link) {
     return elementGallery;
 }
 
-/*  если попап активен,  метод closest возвращает ближайший ролижайший родительский элемент (или сам элемент), который соответствует заданному CSS-селектору или null, если таковых элементов вообще нет.*/
+/*переделано через массив*/
 
-function handleEventClosePopup(event) {
-    const popupActive = event.target.closest(".popup");
-    const isTargetOverlay = event.target.classList.contains("popup_opened");
-    const isTargetButtonClose = event.target.classList.contains("popup__button-close");
+popups.forEach((popup) => {
+    popup.addEventListener('click', (event) => {
+        if (event.target.classList.contains("popup_opened") || event.target.classList.contains("popup__button-close")) {
+            closePopup(popup);
+        }
+    })
+})
+	
 
-    if (isTargetOverlay || isTargetButtonClose) {
-        closePopup(popupActive);
-    }
-}
-
-/*эта функция меняет значение атрибута карточки, вставляя в текст в нужные поля. только зачем? мы же не редактируем карточку...*/
 function сleanElementValue() {
     inputElementLink.value.reset;
     inputElementTitle.value.reset;
@@ -132,10 +102,10 @@ function formDefault(event) {
 initialElements.forEach((item) => renderElement(galleryElements, createCard(item.name, item.link)));
 
 /* ПОТОМ добавим обработчик кнопки добавления*/
-const AddButton = document.querySelector(".profile__add-button");
+const addButton = document.querySelector(".profile__add-button");
 const formCard = document.querySelector('[name="place"]');
 
-AddButton.addEventListener("click", () => {
+addButton.addEventListener("click", () => {
     openPopup(popupPicture);
 });
 
