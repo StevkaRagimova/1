@@ -1,4 +1,4 @@
-const popups = Array.from(document.querySelectorAll(".popup"))
+const popups = Array.from(document.querySelectorAll(".popup"));
 
 const profileEditBtn = document.querySelector(".profile__edit-button");
 const popupProfile = document.querySelector(".popup_profile");
@@ -21,7 +21,6 @@ const subtitleFigure = document.querySelector(".figure__subtitle");
 
 function openPopup(popupProfile) {
     popupProfile.classList.add("popup_opened");
-    
 }
 
 function closePopup(popupProfile) {
@@ -33,7 +32,7 @@ function addValueInValue() {
     formInputProfession.value = profileProfession.textContent;
 }
 
-function profileFormSubmitHandler(event) {
+function handleSubmitProfileForm(event) {
     event.preventDefault();
     profileName.textContent = formInputName.value;
     profileProfession.textContent = formInputProfession.value;
@@ -45,8 +44,7 @@ profileEditBtn.addEventListener("click", () => {
     addValueInValue();
 });
 
-popupForm.addEventListener("submit", profileFormSubmitHandler);
-
+popupForm.addEventListener("submit", handleSubmitProfileForm);
 
 /*эта функция говорит о добавлении карточки в начало массива*/
 function renderElement(container, item) {
@@ -81,13 +79,12 @@ function createCard(name, link) {
 /*переделано через массив*/
 
 popups.forEach((popup) => {
-    popup.addEventListener('click', (event) => {
+    popup.addEventListener("click", (event) => {
         if (event.target.classList.contains("popup_opened") || event.target.classList.contains("popup__button-close")) {
             closePopup(popup);
         }
-    })
-})
-	
+    });
+});
 
 function сleanElementValue() {
     inputElementLink.value.reset;
@@ -102,10 +99,10 @@ function formDefault(event) {
 initialElements.forEach((item) => renderElement(galleryElements, createCard(item.name, item.link)));
 
 /* ПОТОМ добавим обработчик кнопки добавления*/
-const addButton = document.querySelector(".profile__add-button");
+const buttonAddCard = document.querySelector(".profile__add-button");
 const formCard = document.querySelector('[name="place"]');
 
-addButton.addEventListener("click", () => {
+buttonAddCard.addEventListener("click", () => {
     openPopup(popupPicture);
 });
 
