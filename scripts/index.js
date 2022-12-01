@@ -16,22 +16,28 @@ const galleryElements = document.querySelector(".elements");
 const popupFigure = document.querySelector(".popup_figure");
 const imageFigure = document.querySelector(".figure__image");
 const subtitleFigure = document.querySelector(".figure__subtitle");
+const buttonAddCard = document.querySelector(".profile__add-button");
+const formCard = document.querySelector('[name="place"]');
+const submitButton = popupPicture.querySelector('.form__button');
 
-/*начинаем функции для откр.закр.окон*/
+/*функция открытия окна*/
 
 function openPopup(popupProfile) {
     popupProfile.classList.add("popup_opened");
 }
 
+/* функция закрытия окна*/
 function closePopup(popupProfile) {
     popupProfile.classList.remove("popup_opened");
 }
 
+/*функция подстановки данных профиля в форму*/
 function addValueInValue() {
     formInputName.value = profileName.textContent;
     formInputProfession.value = profileProfession.textContent;
 }
 
+/*функция изменения формы профиля*/
 function handleSubmitProfileForm(event) {
     event.preventDefault();
     profileName.textContent = formInputName.value;
@@ -39,19 +45,12 @@ function handleSubmitProfileForm(event) {
     closePopup(popupProfile);
 }
 
-profileEditBtn.addEventListener("click", () => {
-    openPopup(popupProfile);
-    addValueInValue();
-});
-
-popupForm.addEventListener("submit", handleSubmitProfileForm);
-
-/*эта функция говорит о добавлении карточки в начало массива*/
+/*функция добавления карточки в начало массива*/
 function renderElement(container, item) {
     container.prepend(item);
 }
 
-/*эта функция позволяет присваивать новой карточке название и добавлять фото, ставить лайк и удалять фото */
+/*изменение данных карточки*/
 function createCard(name, link) {
     const elementSample = document.querySelector("#element").content;
     const elementGallery = elementSample.querySelector(".element").cloneNode(true);
@@ -70,13 +69,17 @@ function createCard(name, link) {
         img.alt = title.textContent;
         subtitleFigure.textContent = title.textContent;
     });
+
+    /*удаление карточки*/
     buttonTrash.addEventListener("click", (event) => event.target.closest(".element").remove());
+
+    /*лайк*/
     buttonLike.addEventListener("click", (event) => event.target.classList.toggle("element__button_active"));
 
     return elementGallery;
 }
 
-/*переделано через массив*/
+/*закрытие любого попапа всеми способами*/
 
 popups.forEach((popup) => {
     popup.addEventListener("click", (event) => {
@@ -84,29 +87,47 @@ popups.forEach((popup) => {
             closePopup(popup);
         }
     });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closePopup(popup);
+        }
+    });
 });
 
+/*очищаем поля*/
 function сleanElementValue() {
-    inputElementLink.value.reset;
-    inputElementTitle.value.reset;
+    inputElementLink.value = "";
+    inputElementTitle.value = "";
 }
 
+/*функция отключения дефолтного сабмита формы*/
 function formDefault(event) {
     event.preventDefault();
 }
 
-/*начинаем мучить массив, сначала переберем его через фунцкцию renderElement , то есть выводим его на экран*/
+/*вывод данных из массива*/
 initialElements.forEach((item) => renderElement(galleryElements, createCard(item.name, item.link)));
 
-/* ПОТОМ добавим обработчик кнопки добавления*/
-const buttonAddCard = document.querySelector(".profile__add-button");
-const formCard = document.querySelector('[name="place"]');
+/*вызов формы профиля*/
+profileEditBtn.addEventListener("click", () => {
+    openPopup(popupProfile);
+    addValueInValue();
 
-buttonAddCard.addEventListener("click", () => {
-    openPopup(popupPicture);
 });
 
-/*собственно добавление карточки*/
+/*отправки формы профиля*/
+popupForm.addEventListener("submit", handleSubmitProfileForm);
+
+
+/*открытие формы*/
+buttonAddCard.addEventListener("click", () => {
+    openPopup(popupPicture);
+	сleanElementValue();
+    submitButton.disabled = true;
+    submitButton.classList.add('form__button_inactive');
+});
+
+/*добавление карточки*/
 formCard.addEventListener("submit", (event) => {
     renderElement(galleryElements, createCard(inputElementTitle.value, inputElementLink.value));
     formDefault(event);

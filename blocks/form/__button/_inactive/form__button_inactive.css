@@ -1,0 +1,7 @@
+.form__button_inactive {
+  background-color: #E5E5E5;
+}
+
+.form__button_inactive:hover {
+  cursor: default;
+}

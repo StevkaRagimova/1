@@ -1,5 +1,5 @@
 .element__trashbin-button {
-    position: absolute;
+  position: absolute;
   z-index: 5;
   opacity: 1;
   cursor: pointer;
