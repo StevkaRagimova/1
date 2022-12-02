@@ -25,6 +25,11 @@ const submitButton = popupPicture.querySelector('.form__button');
 function openPopup(popupProfile) {
     popupProfile.classList.add("popup_opened");
 }
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closePopup(popup);
+    }
+});
 
 /* функция закрытия окна*/
 function closePopup(popupProfile) {
@@ -32,7 +37,7 @@ function closePopup(popupProfile) {
 }
 
 /*функция подстановки данных профиля в форму*/
-function addValueInValue() {
+function fillInFormInputs() {
     formInputName.value = profileName.textContent;
     formInputProfession.value = profileProfession.textContent;
 }
@@ -87,11 +92,7 @@ popups.forEach((popup) => {
             closePopup(popup);
         }
     });
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closePopup(popup);
-        }
-    });
+   
 });
 
 /*очищаем поля*/
@@ -100,10 +101,6 @@ function сleanElementValue() {
     inputElementTitle.value = "";
 }
 
-/*функция отключения дефолтного сабмита формы*/
-function formDefault(event) {
-    event.preventDefault();
-}
 
 /*вывод данных из массива*/
 initialElements.forEach((item) => renderElement(galleryElements, createCard(item.name, item.link)));
@@ -112,7 +109,6 @@ initialElements.forEach((item) => renderElement(galleryElements, createCard(item
 profileEditBtn.addEventListener("click", () => {
     openPopup(popupProfile);
     addValueInValue();
-
 });
 
 /*отправки формы профиля*/
@@ -123,13 +119,12 @@ popupForm.addEventListener("submit", handleSubmitProfileForm);
 buttonAddCard.addEventListener("click", () => {
     openPopup(popupPicture);
 	сleanElementValue();
-    submitButton.disabled = true;
-    submitButton.classList.add('form__button_inactive');
+    disableSubmitButton();
 });
 
 /*добавление карточки*/
 formCard.addEventListener("submit", (event) => {
     renderElement(galleryElements, createCard(inputElementTitle.value, inputElementLink.value));
-    formDefault(event);
+    event.preventDefault();;
     closePopup(popupPicture);
 });

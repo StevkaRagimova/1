@@ -1,11 +1,11 @@
-/*выводим текст ошибки в нужное место*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
 const showError = (selectedForm, selectedInput, validationConfig) => {
   const error = selectedForm.querySelector(`.${selectedInput.id}-error`);
   error.textContent = selectedInput.validationMessage;
   selectedInput.classList.add(validationConfig.inputErrorClass);
   error.classList.add(validationConfig.errorClass);
 };
-/*удаляем текст ошибки*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/
 const hideError = (selectedForm, selectedInput, validationConfig) => {
   const error = selectedForm.querySelector(`.${selectedInput.id}-error`);
   selectedInput.classList.remove(validationConfig.inputErrorClass);
@@ -13,7 +13,7 @@ const hideError = (selectedForm, selectedInput, validationConfig) => {
   error.textContent = '';
 };
 
-/*проверка валидности*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 const checkInputValidity = (selectedForm, selectedInput, validationConfig) => {
   if (!selectedInput.validity.valid) {
     showError(selectedForm, selectedInput, validationConfig);
@@ -29,7 +29,7 @@ const hasInvalidInput = (inputsList) => {
   })
 };
 
-/*переключаем активность кнопки*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ*/
 const toggleButtonState = (inputsList, submitButton, validationConfig) => {
   if (hasInvalidInput(inputsList)) {
     submitButton.setAttribute('disabled', true);
@@ -40,7 +40,7 @@ const toggleButtonState = (inputsList, submitButton, validationConfig) => {
   }
 };
 
-/*проверяем поля на ввод в конкретной форме*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ*/
 const setEventListeners = (selectedForm, validationConfig) => {
   const inputsList = Array.from(selectedForm.querySelectorAll(validationConfig.inputSelector));
   const submitButton = selectedForm.querySelector(validationConfig.submitButtonSelector);
@@ -63,7 +63,7 @@ const enableValidation = (validationConfig) => {
   });
 };
 
-/*настройки валидации*/
+/*пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ*/
 enableValidation({
   formSelector: '.form',
   inputSelector: '.form__input',
@@ -72,3 +72,4 @@ enableValidation({
   inputErrorClass: 'form__input_type_error',
   errorClass: 'form__input-error_active'
 });
+
