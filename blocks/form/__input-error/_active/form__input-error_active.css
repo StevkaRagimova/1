@@ -1,8 +1,8 @@
 .form__input-error_active {
-    color: #FF0000;
+	color: #FF0000;
     display: block;
     font-size: 12px;
     line-height: 1.1;
     margin-top: 5px;
-
+    position: absolute;
 }

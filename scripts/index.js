@@ -24,16 +24,21 @@ const submitButton = popupPicture.querySelector('.form__button');
 
 function openPopup(popupProfile) {
     popupProfile.classList.add("popup_opened");
+	 document.addEventListener('keydown', closePopupByEsc);
 }
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closePopup(popup);
-    }
-});
+
+/*функция закрытия окна по Escape*/
+function closePopupByEsc (event) {
+  if (event.key === 'Escape') {
+    const activePopup = document.querySelector('.popup_opened');
+    closePopup(activePopup);
+  };
+}; 
 
 /* функция закрытия окна*/
-function closePopup(popupProfile) {
-    popupProfile.classList.remove("popup_opened");
+function closePopup(popup) {
+    popup.classList.remove("popup_opened");
+	document.removeEventListener('keydown', closePopupByEsc);
 }
 
 /*функция подстановки данных профиля в форму*/
@@ -84,7 +89,7 @@ function createCard(name, link) {
     return elementGallery;
 }
 
-/*закрытие любого попапа всеми способами*/
+/*закрытие любого попапа крестиком и по оверлею*/
 
 popups.forEach((popup) => {
     popup.addEventListener("click", (event) => {
@@ -101,14 +106,13 @@ function сleanElementValue() {
     inputElementTitle.value = "";
 }
 
-
 /*вывод данных из массива*/
 initialElements.forEach((item) => renderElement(galleryElements, createCard(item.name, item.link)));
 
 /*вызов формы профиля*/
 profileEditBtn.addEventListener("click", () => {
     openPopup(popupProfile);
-    addValueInValue();
+    fillInFormInputs();
 });
 
 /*отправки формы профиля*/
