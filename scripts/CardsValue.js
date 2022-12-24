@@ -1,5 +1,4 @@
-export const popupCard = document.querySelector('.popup_picture');
-export const submitButton = popupCard.querySelector('.form__button');
+
 export const initialValue = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'

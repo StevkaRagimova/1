@@ -4,7 +4,7 @@ const imageFigure = document.querySelector('.figure__image');
 
 function openPopup(popup) { 
   popup.classList.add('popup_opened');
-  document.addEventListener('mouseup', closePopupByOverlay);
+  popup.addEventListener('mouseup', closePopupByOverlay);
   document.addEventListener('keydown', closePopupByEsc);
 };
   
