@@ -49,7 +49,6 @@ function createCard(data) {
   return newCard.fillCard();
 }
 
-
 function renderCard(item) {
   galleryElements.prepend(item);
 }

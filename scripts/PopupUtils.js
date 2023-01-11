@@ -2,13 +2,6 @@ const popupFigure = document.querySelector(".popup_figure");
 const subtitleFigure = document.querySelector(".figure__subtitle");
 const imageFigure = document.querySelector(".figure__image");
 
-function addOverlayListener(popup) {
-  if (!popup.overlayListenerAdded) {
-    popup.addEventListener("mouseup", closePopupByOverlay);
-    popup.overlayListenerAdded = true;
-  }
-}
-
 function openPopup(popup) {
   document.addEventListener("keydown", closePopupByEsc);
   popup.classList.add("popup_opened");
